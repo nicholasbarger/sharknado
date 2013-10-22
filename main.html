@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Knockout Bindings and Sharknado</title> 
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="hero-unit">
+                <h1>Sharknado Knockout Demo</h1>
+            </div>
+            <div class="content-fluid">
+                <div class="row-fluid">
+                    <div class="span6">
+                        <h2>Find Movies with Knockout</h2>
+                        <p>Search for results: </p>
+                        <form class="form-search" data-bind="submit: search">
+                            <input type="search" data-bind="value: searchTerms" />
+                            <input type="submit" class="btn" value="Go" />
+                        </form>
+                        <div>
+                            <i>Here are some hints:</i>
+                            <ul>
+                                <li><a href="#" data-bind="click: function(data, event) { searchTerms('Sharknado') }">Sharknado</a></li>
+                                <li><a href="#" data-bind="click: function(data, event) { searchTerms('Dinocroc') }">Dinocroc</a></li>
+                                <li><a href="#" data-bind="click: function(data, event) { searchTerms('Sharktopus') }">Sharktopus</a></li>
+                                <li><a href="#" data-bind="click: function(data, event) { searchTerms('Wolfhound') }">Wolfhound</a></li>
+                            </ul>
+                        </div>
+                        
+                        <h3 data-bind="visible: results().length > 0">Search Results</h3>
+                        <div data-bind="foreach: results">
+                            <a data-bind="click: $root.selectMovie, text: Title"></a><br />
+                        </div>
+                    </div>
+                    
+                    <div class="span6" data-bind="with: movie">
+                        <h2 data-bind="text: title"></h2>
+                        <span data-bind="text: genre"></span><br />
+                        <img data-bind="attr: { src: poster, title: title }" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scripts -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+        
+        <script src="models/movie.js"></script>
+        <script src="viewmodels/vm-main.js"></script>
+    </body>
+</html>
